@@ -39,7 +39,7 @@ class BazarakiBot:
         self._updater.start_webhook(listen='0.0.0.0',
                                     port=8443,
                                     url_path=self._token)
-        self._updater.bot.setWebhook(f'https://37.139.43.8:8443/{self._token}')
+        self._updater.bot.setWebhook(f'http://37.139.43.8:8443/{self._token}')
         self._updater.idle()
 
     def _start_cmd(self, update, context):
