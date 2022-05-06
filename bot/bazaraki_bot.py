@@ -39,9 +39,8 @@ class BazarakiBot:
         self._updater.start_webhook(listen='0.0.0.0',
                                     port=8443,
                                     cert='cert.pem',
-                                    url_path=self._token)
-        self._updater.bot.setWebhook(f'https://37.139.43.8:8443/{self._token}')
-        self._updater.idle()
+                                    url_path=self._token,
+                                    webhook_url=f'https://37.139.43.8:8443/{self._token}')
 
     def _start_cmd(self, update, context):
         chat_id = update.message.chat_id
