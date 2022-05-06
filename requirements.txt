@@ -1,3 +1,4 @@
 beautifulsoup4==4.9.3
 python_telegram_bot==13.1
 requests==2.27.1
+aiohttp~=3.8.1
