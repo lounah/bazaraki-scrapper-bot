@@ -28,7 +28,7 @@ class BazarakiBot:
 
     def start(self):
         threading.Thread(target=self._configure_bot).start()
-        # threading.Thread(target=self._poll_bazaraki).start()
+        threading.Thread(target=self._poll_bazaraki).start()
 
     def _configure_bot(self):
         self._updater.dispatcher.add_handler(CommandHandler(['start', 'configure'], self._start_cmd))
@@ -38,8 +38,8 @@ class BazarakiBot:
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_selected, pattern='^price_max.*'))
         self._updater.start_webhook(listen='0.0.0.0',
                                     port=8443,
-                                    url_path=self._token,
-                                    webhook_url=f'https://37.139.43.8:8443/{self._token}')
+                                    url_path=self._token)
+        self._updater.bot.setWebhook(f'https://37.139.43.8:8443/{self._token}')
         self._updater.idle()
 
     def _start_cmd(self, update, context):
