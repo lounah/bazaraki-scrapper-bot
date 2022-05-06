@@ -20,6 +20,7 @@ class BazarakiBot:
                  timeout_sec: int,
                  estate_repo: EstateRepository,
                  subscription_manager: SubscriptionManager):
+        self._token = token
         self._updater = Updater(token)
         self._timeout = timeout_sec
         self._repo = estate_repo
@@ -35,7 +36,10 @@ class BazarakiBot:
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_selected, pattern='^district.*'))
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._min_price_selected, pattern='^price_min.*'))
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_selected, pattern='^price_max.*'))
-        self._updater.start_polling()
+        self._updater.start_webhook(listen='0.0.0.0',
+                                    port=8443,
+                                    url_path=self._token,
+                                    webhook_url=f'https://37.139.43.8:8443/{self._token}')
         self._updater.idle()
 
     def _start_cmd(self, update, context):
