@@ -28,7 +28,7 @@ class BazarakiBot:
 
     def start(self):
         threading.Thread(target=self._configure_bot).start()
-        threading.Thread(target=self._poll_bazaraki).start()
+        # threading.Thread(target=self._poll_bazaraki).start()
 
     def _configure_bot(self):
         self._updater.dispatcher.add_handler(CommandHandler(['start', 'configure'], self._start_cmd))
