@@ -27,7 +27,8 @@ class BazarakiBot:
         self._subscription_manager = subscription_manager
 
     def start(self):
-        threading.Thread(target=self._configure_bot).start()
+        # threading.Thread(target=self._configure_bot).start()
+        self._configure_bot()
         threading.Thread(target=self._poll_bazaraki).start()
 
     def _configure_bot(self):
