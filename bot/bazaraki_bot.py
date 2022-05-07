@@ -92,7 +92,7 @@ class BazarakiBot:
     def _district_back(update, context):
         update.callback_query.edit_message_text(
             messages.messages['start'],
-            reply_markup=messages.keyboards['start']
+            reply_markup=messages.keyboards['configure']
         )
 
     @staticmethod
