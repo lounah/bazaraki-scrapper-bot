@@ -1,6 +1,7 @@
 import logging
 
 from di import Di
+from daemonize import Daemonize
 
 TOKEN = "5168767958:AAEk_XoqEaS9S8bxy9qfBeFiAIg5Xi20okE"
 
@@ -16,4 +17,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    daemon = Daemonize(app="test_app", pid=666, action=main)
+    daemon.start()
