@@ -36,6 +36,9 @@ class BazarakiBot:
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_selected, pattern='^district.*'))
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._min_price_selected, pattern='^price_min.*'))
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_selected, pattern='^price_max.*'))
+        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_back, pattern='^district back$'))
+        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._min_price_back, pattern='^price_min back$'))
+        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_back, pattern='^price_max back$'))
         self._updater.start_webhook(listen='0.0.0.0',
                                     port=8443,
                                     cert='cert.pem',
@@ -84,6 +87,27 @@ class BazarakiBot:
         max_price = re.search("\d+", update.callback_query.data).group(0)
         self._subscription_manager.update(chat_id, {"price_max": int(max_price)})
         update.callback_query.edit_message_text(messages.messages['configured'])
+
+    @staticmethod
+    def _district_back(update, context):
+        update.callback_query.edit_message_text(
+            messages.messages['start'],
+            reply_markup=messages.keyboards['start']
+        )
+
+    @staticmethod
+    def _min_price_back(update, context):
+        update.callback_query.edit_message_text(
+            messages.messages['district'],
+            reply_markup=messages.keyboards['district']
+        )
+
+    @staticmethod
+    def _max_price_back(update, context):
+        update.callback_query.edit_message_text(
+            messages.messages['price_min'],
+            reply_markup=messages.keyboards['price_min']
+        )
 
     def _poll_bazaraki(self):
         try:

@@ -36,6 +36,7 @@ keyboards = {
             [InlineKeyboardButton('Larnaka', callback_data=str('district ' + str(District.LARNACA.value)))],
             [InlineKeyboardButton('Lefkosia', callback_data=str('district ' + str(District.LEFKOSIA.value)))],
             [InlineKeyboardButton('Famagusta', callback_data=str('district ' + str(District.FAMAGUSTA.value)))],
+            [InlineKeyboardButton('⬅️ Back', callback_data=str('district back'))]
         ]
     ),
 
@@ -65,6 +66,9 @@ keyboards = {
                 InlineKeyboardButton('2500', callback_data=str('price_min ' + str(2500))),
                 InlineKeyboardButton('2800', callback_data=str('price_min ' + str(2800))),
                 InlineKeyboardButton('3200', callback_data=str('price_min ' + str(3200))),
+            ],
+            [
+                InlineKeyboardButton('⬅️ Back', callback_data=str('price_min back'))
             ]
         ]
     ),
@@ -95,6 +99,9 @@ keyboards = {
                 InlineKeyboardButton('2500', callback_data=str('price_max ' + str(2500))),
                 InlineKeyboardButton('2800', callback_data=str('price_max ' + str(2800))),
                 InlineKeyboardButton('3200', callback_data=str('price_max ' + str(3200))),
+            ],
+            [
+                InlineKeyboardButton('⬅️ Back', callback_data=str('price_max back'))
             ]
         ]
     ),
