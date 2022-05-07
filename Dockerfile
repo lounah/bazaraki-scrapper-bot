@@ -1,9 +1,9 @@
-#Deriving the latest base image
 FROM python:latest
 
 WORKDIR /usr/app/src
 
 COPY . ./
 
-CMD [ "pip3", "install", "-r", "requiremets.txt" ]
+RUN pip install -r requirements.txt
+
 CMD [ "python", "./main.py"]
