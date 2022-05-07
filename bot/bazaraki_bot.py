@@ -38,7 +38,7 @@ class BazarakiBot:
         self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_selected, pattern='^price_max.*'))
         self._updater.start_webhook(listen='0.0.0.0',
                                     port=8443,
-                                    cert='public-cert.pem',
+                                    cert='cert.pem',
                                     key='private.key',
                                     url_path=self._token,
                                     webhook_url=f'https://37.139.43.8:8443/{self._token}')
