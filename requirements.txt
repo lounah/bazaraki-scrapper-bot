@@ -3,4 +3,4 @@ python_telegram_bot==13.1
 requests==2.27.1
 aiohttp~=3.8.1
 telegram==0.0.1
-daemon==1.2
+daemon~=1.2
