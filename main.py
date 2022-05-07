@@ -17,5 +17,5 @@ def main():
 
 
 if __name__ == "__main__":
-    daemon = Daemonize(app="test_app", pid=666, action=main)
+    daemon = Daemonize(app="test_app", pid='666', action=main)
     daemon.start()
