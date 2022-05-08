@@ -14,6 +14,6 @@ class EstateRepository:
     def get_updates(self, districts: List[District], price_min: int, price_max: int) -> List[Estate]:
         estates = self._get_estate.execute(districts, price_min, price_max)
         saved = self._db.get_all()
-        updates = list(filter(lambda estate: estate not in saved, estates))
-        self._db.add_all(updates)
+        updates = list(filter(lambda estate: estate.id not in saved, estates))
+        self._db.add_all(list(map(lambda estate: estate.id, updates)))
         return updates
