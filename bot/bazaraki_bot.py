@@ -31,21 +31,24 @@ class BazarakiBot:
         threading.Thread(target=self._poll_bazaraki).start()
 
     def _configure_bot(self):
-        self._updater.dispatcher.add_handler(CommandHandler(['start', 'configure'], self._start_cmd))
-        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_cmd, pattern='^district$'))
-        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_selected, pattern='^district.*'))
-        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._min_price_selected, pattern='^price_min.*'))
-        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_selected, pattern='^price_max.*'))
-        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_back, pattern='^back_district$'))
-        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._min_price_back, pattern='^back_price_min$'))
-        self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_back, pattern='^back_price_max$'))
-        self._updater.start_webhook(listen='0.0.0.0',
-                                    port=8443,
-                                    cert='cert.pem',
-                                    key='private.key',
-                                    url_path=self._token,
-                                    webhook_url=f'https://37.139.43.8:8443/{self._token}')
-        self._updater.idle()
+        try:
+            self._updater.dispatcher.add_handler(CommandHandler(['start', 'configure'], self._start_cmd))
+            self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_cmd, pattern='^district$'))
+            self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_selected, pattern='^district.*'))
+            self._updater.dispatcher.add_handler(CallbackQueryHandler(self._min_price_selected, pattern='^price_min.*'))
+            self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_selected, pattern='^price_max.*'))
+            self._updater.dispatcher.add_handler(CallbackQueryHandler(self._district_back, pattern='^back_district$'))
+            self._updater.dispatcher.add_handler(CallbackQueryHandler(self._min_price_back, pattern='^back_price_min$'))
+            self._updater.dispatcher.add_handler(CallbackQueryHandler(self._max_price_back, pattern='^back_price_max$'))
+            self._updater.start_webhook(listen='0.0.0.0',
+                                        port=8443,
+                                        cert='cert.pem',
+                                        key='private.key',
+                                        url_path=self._token,
+                                        webhook_url=f'https://37.139.43.8:8443/{self._token}')
+            self._updater.idle()
+        except Exception as e:
+            print(f"{datetime.now().strftime('%H:%M:%S')} Error: {str(e)}")
 
     def _start_cmd(self, update, context):
         chat_id = update.message.chat_id
