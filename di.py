@@ -5,6 +5,7 @@ from core.data.subscription_manager import SubscriptionManager
 from core.domain.estate_mapper import EstateMapper
 from core.domain.estate_repository import EstateRepository
 from core.domain.get_estate import GetEstate
+from core.logger.logger import Logger
 
 
 class Di:
@@ -17,4 +18,5 @@ class Di:
         db = EstateDatabase("estates.json")
         repository = EstateRepository(get_estate, db)
         subscription_manager = SubscriptionManager("subscriptions.json")
-        return BazarakiBot(self._token, self._timeout, repository, subscription_manager)
+        logger = Logger("logs.txt")
+        return BazarakiBot(self._token, self._timeout, repository, subscription_manager, logger)

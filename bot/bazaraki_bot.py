@@ -12,6 +12,7 @@ from core.data.district import District
 from core.data.estate import Estate
 from core.domain.estate_repository import EstateRepository
 from core.data.subscription_manager import SubscriptionManager
+from core.logger.logger import Logger
 
 
 class BazarakiBot:
@@ -19,12 +20,14 @@ class BazarakiBot:
                  token: str,
                  timeout_sec: int,
                  estate_repo: EstateRepository,
-                 subscription_manager: SubscriptionManager):
+                 subscription_manager: SubscriptionManager,
+                 logger: Logger):
         self._token = token
         self._updater = Updater(token)
         self._timeout = timeout_sec
         self._repo = estate_repo
         self._subscription_manager = subscription_manager
+        self._logger = logger
 
     def start(self):
         threading.Thread(target=self._configure_bot).start()
@@ -48,7 +51,7 @@ class BazarakiBot:
                                         webhook_url=f'https://37.139.43.8:8443/{self._token}')
             self._updater.idle()
         except Exception as e:
-            print(f"{datetime.now().strftime('%H:%M:%S')} Error: {str(e)}")
+            self._logger.log(f"Error: {str(e)}")
 
     def _start_cmd(self, update, context):
         chat_id = update.message.chat_id
@@ -114,14 +117,15 @@ class BazarakiBot:
 
     def _poll_bazaraki(self):
         try:
+            self._logger.log("polling www.bazaraki.com")
             print(f"{datetime.now().strftime('%H:%M:%S')} polling www.bazaraki.com")
             updates = self._repo.get_updates(districts=District.values(), price_min=0, price_max=3200)
-            print(f"{datetime.now().strftime('%H:%M:%S')} got {len(updates)} new ads")
+            self._logger.log(f"got {len(updates)} new ad(s)")
             self._handle_updates(updates)
             time.sleep(self._timeout)
             self._poll_bazaraki()
         except Exception as e:
-            print(f"{datetime.now().strftime('%H:%M:%S')} Error: {str(e)}")
+            self._logger.log(f"Error: {str(e)}")
 
     def _handle_updates(self, updates: List[Estate]):
         subscriptions = self._subscription_manager.subscriptions()
