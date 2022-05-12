@@ -24,9 +24,11 @@ class Di:
 
     def bot(self) -> Bot:
         logger = LoggerImpl([SystemOutTarget(), FileTarget(LOGS_PATH)])
-        manager = AdsManager(BazarakiApi(), Scrapper(), AdsDatabase(ADS_PATH))
+        ads_db = AdsDatabase(ADS_PATH)
+        subs_db = SubscriptionsDatabase(SUBSCRIPTIONS_PATH)
+        manager = AdsManager(BazarakiApi(), Scrapper(), ads_db, subs_db)
         watcher = AdsWatcher(POLLING_TIMEOUT, manager, logger)
-        controller = BotController(self._config, watcher, SubscriptionsDatabase(SUBSCRIPTIONS_PATH), logger)
+        controller = BotController(self._config, watcher, subs_db, logger)
         return Bot(controller, logger)
 
     @staticmethod
