@@ -12,9 +12,9 @@ from watcher.ads_manager import AdsManager
 from watcher.ads_watcher import AdsWatcher
 
 POLLING_TIMEOUT = 60 * 5
-LOGS_PATH = '../outputs/logs.txt'
-ADS_PATH = '../outputs/ads.json'
-SUBSCRIPTIONS_PATH = '../outputs/subscriptions.json'
+LOGS_PATH = 'outputs/logs.txt'
+ADS_PATH = 'outputs/ads.json'
+SUBSCRIPTIONS_PATH = 'outputs/subscriptions.json'
 
 
 class Di:
