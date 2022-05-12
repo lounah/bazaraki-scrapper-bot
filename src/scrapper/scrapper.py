@@ -3,19 +3,20 @@ from typing import List
 
 from bs4 import BeautifulSoup
 
-from core.data.estate import Estate
+from src.scrapper.ad import Ad, Category
 
 
-class EstateMapper:
+class Scrapper:
 
-    def map(self, html: str) -> List[Estate]:
+    def scrap(self, html: str, category: Category) -> List[Ad]:
         _soup = BeautifulSoup(html, 'html.parser')
         _announcements = _soup.body.find_all('li', attrs={'class': 'announcement-container'})
-        return list(map(self._as_estate, _announcements))
+        return list(map(lambda announcement: self._as_ad(announcement, category), _announcements))
 
-    def _as_estate(self, announcement) -> Estate:
+    def _as_ad(self, announcement, category) -> Ad:
         _url = self._extract_url(announcement)
-        return Estate(
+        return Ad(
+            category=category,
             date=self._extract_date(announcement),
             description=self._extract_description(announcement),
             id=re.search("/adv/(\d+)_", _url).group(1),

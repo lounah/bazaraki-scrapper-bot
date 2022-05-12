@@ -1,9 +1,18 @@
 from dataclasses import dataclass
-from core.data.district import District
+from enum import Enum
+
+from src.api.district import District
+from src.bot.subscriptions import Subscription
+
+
+class Category(str, Enum):
+    ESTATE = 0
+    CARS = 1
 
 
 @dataclass
-class Estate:
+class Ad:
+    category: Category
     date: str
     description: str
     id: str
@@ -12,7 +21,7 @@ class Estate:
     title: str
     url: str
 
-    def telegram_msg(self) -> str:
+    def __str__(self) -> str:
         return (
             f'💶 <strong>{int(float(self.price))} €</strong>\n'
             f'📝 <strong>{self.title}</strong>\n'
@@ -33,4 +42,13 @@ class Estate:
         elif "Limassol" in self.location:
             return District.LIMASSOL
         else:
-            return District.LIMASSOL
+            return District.UNKNOWN
+
+    def matches_subscription(self, subscription: Subscription) -> bool:
+        price = int(float(self.price))
+        district = self.district().value
+
+        matches_car = price in range(subscription.car.price_min, subscription.car.price_max) and district == subscription.car.district
+        marches_estate = price in range(subscription.estate.price_min, subscription.estate.price_max) and district == subscription.estate.district
+
+        return matches_car or marches_estate

@@ -7,6 +7,7 @@ class District(Enum):
     LEFKOSIA = 11
     LIMASSOL = 12
     PAPHOS = 13
+    UNKNOWN = -1
 
     @staticmethod
     def values():
