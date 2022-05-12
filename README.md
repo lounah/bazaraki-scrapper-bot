@@ -35,5 +35,5 @@ key=<KEY_PATH> # path to .key secret
 ### Run
 
 ```shell
-$ docker run --rm -d --env-file your-env-file.env bazaraki-scrapper-bot
+$ docker run --rm -d --env-file your-env-file.env -p <port>:<port> bazaraki-scrapper-bot
 ```
