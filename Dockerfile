@@ -1,9 +1,12 @@
-FROM python:latest
+FROM python:3.9.6
 
-WORKDIR /usr/app/src
+LABEL maintainer="<lounah@yandex.ru>"
 
-COPY . ./
+ENV TZ "Europe/Moscow"
+ENV LANG en_US.UTF-8
 
+WORKDIR /app
+COPY requirements.txt .
 RUN pip install -r requirements.txt
-
-CMD [ "python", "./src/app.py"]
+COPY src/ .
+CMD ["python", "app.py"]
