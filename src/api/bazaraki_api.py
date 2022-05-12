@@ -2,7 +2,7 @@ from typing import List
 
 import requests
 
-from src.api.district import District
+from api.district import District
 
 
 class BazarakiApi:

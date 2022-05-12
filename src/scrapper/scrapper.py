@@ -3,7 +3,7 @@ from typing import List
 
 from bs4 import BeautifulSoup
 
-from src.scrapper.ad import Ad, Category
+from scrapper.ad import Ad, Category
 
 
 class Scrapper:

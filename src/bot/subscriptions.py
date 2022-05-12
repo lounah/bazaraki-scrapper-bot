@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from src.api.district import District
+from api.district import District
 
 
 class CarSubscription(BaseModel):

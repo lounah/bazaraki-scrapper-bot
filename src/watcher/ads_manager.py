@@ -1,11 +1,11 @@
 from typing import List
 
-from src.api.bazaraki_api import BazarakiApi
-from src.api.district import District
-from src.db.ads import AdsDatabase
-from src.db.subscriptions import SubscriptionsDatabase
-from src.scrapper.ad import Ad, Category
-from src.scrapper.scrapper import Scrapper
+from api.bazaraki_api import BazarakiApi
+from api.district import District
+from db.ads import AdsDatabase
+from db.subscriptions import SubscriptionsDatabase
+from scrapper.ad import Ad, Category
+from scrapper.scrapper import Scrapper
 
 MIN_PRICE = 0
 MAX_RENT_PRICE = 3200

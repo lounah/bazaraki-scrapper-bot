@@ -1,8 +1,8 @@
 import threading
 import time
 
-from src.logger.logger import Logger
-from src.watcher.ads_manager import AdsManager
+from logger.logger import Logger
+from watcher.ads_manager import AdsManager
 
 
 class AdsWatcher:

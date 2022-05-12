@@ -4,13 +4,13 @@ from typing import List
 from telegram import ParseMode, ForceReply
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
 
-from src.bot.config import ServerConfig
-from src.bot.messages import keyboards, messages
-from src.bot.subscriptions import Subscription
-from src.db.subscriptions import SubscriptionsDatabase
-from src.logger.logger import Logger
-from src.scrapper.ad import Ad
-from src.watcher.ads_watcher import AdsWatcher
+from bot.config import ServerConfig
+from bot.messages import keyboards, messages
+from bot.subscriptions import Subscription
+from db.subscriptions import SubscriptionsDatabase
+from logger.logger import Logger
+from scrapper.ad import Ad
+from watcher.ads_watcher import AdsWatcher
 
 
 class BotController:

@@ -1,6 +1,6 @@
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
-from src.api.district import District
+from api.district import District
 
 messages = {
     'start':

@@ -1,15 +1,15 @@
 import os
 
-from src.api.bazaraki_api import BazarakiApi
-from src.bot.bot import Bot
-from src.bot.config import ServerConfig
-from src.bot.controller import BotController
-from src.db.ads import AdsDatabase
-from src.db.subscriptions import SubscriptionsDatabase
-from src.logger.logger import LoggerImpl, SystemOutTarget, FileTarget
-from src.scrapper.scrapper import Scrapper
-from src.watcher.ads_manager import AdsManager
-from src.watcher.ads_watcher import AdsWatcher
+from api.bazaraki_api import BazarakiApi
+from bot.bot import Bot
+from bot.config import ServerConfig
+from bot.controller import BotController
+from db.ads import AdsDatabase
+from db.subscriptions import SubscriptionsDatabase
+from logger.logger import LoggerImpl, SystemOutTarget, FileTarget
+from scrapper.scrapper import Scrapper
+from watcher.ads_manager import AdsManager
+from watcher.ads_watcher import AdsWatcher
 
 POLLING_TIMEOUT = 60 * 5
 LOGS_PATH = '../outputs/logs.txt'

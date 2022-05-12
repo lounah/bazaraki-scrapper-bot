@@ -4,8 +4,8 @@ from typing import Optional, List
 from tinydb import Query
 from tinydb.table import Document
 
-from src.db.db import Database
-from src.scrapper.ad import Ad
+from db.db import Database
+from scrapper.ad import Ad
 
 
 class AdsDatabase(Database):

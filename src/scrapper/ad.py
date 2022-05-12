@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from src.api.district import District
-from src.bot.subscriptions import Subscription
+from api.district import District
+from bot.subscriptions import Subscription
 
 
 class Category(str, Enum):

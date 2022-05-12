@@ -1,7 +1,7 @@
 import threading
 
-from src.bot.controller import BotController
-from src.logger.logger import Logger
+from bot.controller import BotController
+from logger.logger import Logger
 
 
 class Bot:

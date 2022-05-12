@@ -3,8 +3,8 @@ from typing import List
 from tinydb import Query
 from tinydb.table import Document
 
-from src.bot.subscriptions import Subscription, set_nested
-from src.db.db import Database
+from bot.subscriptions import Subscription, set_nested
+from db.db import Database
 
 
 class SubscriptionsDatabase(Database):
