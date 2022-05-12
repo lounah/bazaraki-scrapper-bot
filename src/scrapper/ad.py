@@ -48,7 +48,12 @@ class Ad:
         price = int(float(self.price))
         district = self.district().value
 
-        matches_car = price in range(subscription.car.price_min, subscription.car.price_max) and district == subscription.car.district
-        marches_estate = price in range(subscription.estate.price_min, subscription.estate.price_max) and district == subscription.estate.district
+        matches_car = price in range(subscription.car.price_min, subscription.car.price_max) \
+                      and district == subscription.car.district \
+                      and self.category == Category.CARS
+
+        marches_estate = price in range(subscription.estate.price_min, subscription.estate.price_max) \
+                         and district == subscription.estate.district \
+                         and self.category == Category.ESTATE
 
         return matches_car or marches_estate
