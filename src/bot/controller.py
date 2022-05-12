@@ -79,7 +79,12 @@ class BotController:
     def _cmd_start(self, update, ctx):
         self._logger.info(f"new subscription `{update.message.chat_id}`")
         self._subs_db.add(Subscription.new(str(update.message.chat_id)))
-        update.message.reply_text(messages['start'], reply_markup=keyboards['start'])
+        update.message.reply_text(
+            messages['start'],
+            disable_web_page_preview=True,
+            parse_mode=ParseMode.HTML,
+            reply_markup=keyboards['start']
+        )
 
     def _cmd_subscription(self, update, ctx):
         subscription = self._subs_db.get(str(update.message.chat_id))
