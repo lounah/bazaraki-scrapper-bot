@@ -5,7 +5,7 @@ from di.di import Di
 
 
 def main(argv):
-    di = Di(os.getenv('token'), os.getenv('PORT'), os.getenv('url'))
+    di = Di(os.getenv('token'), os.getenv('port'), os.getenv('url'))
     di.bot().start()
 
 
