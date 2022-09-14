@@ -35,10 +35,10 @@ class BotController:
     def _start_bot(self):
         self._init_dispatcher()
         self._updater.start_webhook(
-            listen='0.0.0.0',
+            listen="0.0.0.0",
             port=self._config.port,
             url_path=self._config.token,
-            webhook_url=self._config.hook_url()
+            webhook_url=self._config.url + self._config.token
         )
         self._updater.idle()
 
