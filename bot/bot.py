@@ -12,6 +12,6 @@ class Bot:
     def start(self):
         try:
             self._logger.debug(f"[Bot] bot started")
-            threading.Thread(target=self._controller.start).start()
+            self._controller.start()
         except Exception as e:
             self._logger.error(f"[Bot] {str(e)}")
