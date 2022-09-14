@@ -18,8 +18,8 @@ SUBSCRIPTIONS_PATH = 'outputs/subscriptions.json'
 
 
 class Di:
-    def __init__(self, token: str, port: str, url: str, cert: str, key: str):
-        self._config = ServerConfig(token, int(port), url, cert, key)
+    def __init__(self, token: str, port: str, url: str):
+        self._config = ServerConfig(token, int(port), url)
         self._init_outputs()
 
     def bot(self) -> Bot:

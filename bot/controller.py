@@ -37,8 +37,6 @@ class BotController:
         self._updater.start_webhook(
             listen='0.0.0.0',
             port=self._config.port,
-            cert=self._config.cert,
-            key=self._config.key,
             url_path=self._config.token,
             webhook_url=self._config.hook_url()
         )
